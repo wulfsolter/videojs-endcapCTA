@@ -1,0 +1,16 @@
+.vjs-endcapCTA {
+  background: #000;
+  background: rgba(0, 0, 0, .7);
+  display: none;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.vjs-endcapCTA.is-active {
+  display: block;
+}
