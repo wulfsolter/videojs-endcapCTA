@@ -1,0 +1,70 @@
+<head>
+  <script src="/js/vendor/video.min.js"></script>
+  <script src="/js/vendor/videojs.endcapCTA.js"></script>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../js/vendor/jquery-2.1.4.min.js"><\/script>')</script>
+  <script src="/js/vendor/jquery.validate.js"></script>
+  <script src="/js/vendor/jquery.form.js"></script>
+
+  <link rel="stylesheet" href="/css/video-js.min.css">
+  <link rel="stylesheet" href="/css/videojs.endcapCTA.css">
+
+</head>
+
+<body>
+  <video id="video-id" class="video-js vjs-default-skin">
+    <source src="video.mp4" type='video/mp4'>
+    <source src="video.webm" type='video/webm'>
+    <source src="video.ogv" type='video/webm'>
+    <p class="vjs-no-js">
+      <a href="https://www.youtube.com/watch?v=...." target="_blank">View this video on YouTube</a>
+    </p>
+  </video>
+  <script type="text/javascript">
+
+    video = videojs('video-id', {
+      "width":680,
+      "height":495,
+      "autoplay": true,
+      "controls": true,
+      "preload": "auto"
+    });
+
+    video.endcapCTA({
+      html: '<section class="getstarted"><div class="loveToHearHead">We&apos;d love to hear from you!</div><form id="loveToHearForm" method="post" accept-charset="utf-8" action="#"><input id="gs-name" class="input-name" autocorrect="off" autocapitalize="off" required name="name" placeholder="Name" type="text" value="" size="25"><input id="gs-company" class="input-company" autocorrect="off" autocapitalize="off" required name="company" placeholder="Company" type="text" value="" size="25"><input id="gs-email" class="input-email" autocorrect="off" autocapitalize="off" required name="email" placeholder="Email Address" type="email" value="" size="25"><textarea id="gs-message" rows="10" cols="50" autocorrect="off" autocapitalize="off" required name="message" placeholder="Message"></textarea><input id="formSubmitButton" class="button-submit" type="submit" value="Send!" name="submit"></form><ul class="loveToHearSuckfail"><li class="sending">Sending...</li><li class="success">Thank you! We will get back to you as soon as possible.</li><li class="failure">Something went wrong, sorry! Please try again.</li></ul><button name="watchAgain" class="watchAgain" onClick="watchAgain();"><h2>Watch Video Again</h2></button></section>',
+      run: function() {
+        // This runs upon creation of endcapCTA, just after video starts playing
+      }
+    });
+
+    function watchAgain() {
+      video.play();
+    }
+
+    function submitAndSpin() {
+      $('.sending').show();
+      //
+      // Do form submission stuff here
+      // Hide/show the success/failure/sending <li>s
+      //
+      return false;
+    }
+
+    // prep the form to do JS magic if available
+    window.setTimeout(function() {
+      $('#loveToHearForm').validate({
+        submitHandler: function(form) {
+          submitAndSpin();
+        },
+        messages: {
+          name: 'Please enter your name',
+          company: 'Please enter your company',
+          email: 'Please enter your email address so we can contact you',
+          message: 'Please enter a short message of what we can do to help'
+        }
+      });
+    }, 100);
+
+  </script>
+</body>
