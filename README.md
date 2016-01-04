@@ -10,3 +10,19 @@ Such as:
 
 ![Example Screenshot](https://raw.githubusercontent.com/wulfsolter/videojs-endcapCTA/master/example1.png)
 
+## Usage
+
+```javascript
+// Get the video.js object
+var video = videojs('video-id', {
+  "controls": true
+});
+
+// Add a the endcap content
+video.endcapCTA({
+  html: '<section class="endcapCallToActionContent">....</section>',
+  run: function() {
+    // This runs upon creation of endcapCTA, just after video starts playing
+  }
+});
+```
