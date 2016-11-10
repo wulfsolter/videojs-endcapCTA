@@ -34,6 +34,7 @@
     // attach VideoJS event handlers
     player.on('ended', function() {
       _content.classList.add('is-active');
+      if (opts.run) opts.run();
     });
     player.on('play', function() {
       if (_content) {
